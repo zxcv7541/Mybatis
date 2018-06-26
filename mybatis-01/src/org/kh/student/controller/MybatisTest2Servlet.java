@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.kh.student.model.service.StudentServiceImpl;
 
 /**
- * Servlet implementation class MybatisTest1Servlet
+ * Servlet implementation class MybatisTest2Servlet
  */
-@WebServlet(name = "MybatisTest1", urlPatterns = { "/mybatisTest1" })
-public class MybatisTest1Servlet extends HttpServlet {
+@WebServlet(name = "MybatisTest2", urlPatterns = { "/mybatisTest2" })
+public class MybatisTest2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MybatisTest1Servlet() {
+    public MybatisTest2Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,11 @@ public class MybatisTest1Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int result=new StudentServiceImpl().insertStudent();
+		request.setCharacterEncoding("utf-8");
+		
+		String studentName=request.getParameter("studentName");
+		
+		int result=new StudentServiceImpl().insertStudent(studentName);
 		
 		if(result>0)
 		{
@@ -39,8 +43,6 @@ public class MybatisTest1Servlet extends HttpServlet {
 		{
 			response.getWriter().println("실패되었습니다.");
 		}
-		
-		
 	}
 
 	/**

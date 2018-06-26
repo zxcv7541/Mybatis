@@ -8,18 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kh.student.model.service.StudentServiceImpl;
+import org.kh.student.model.vo.Student;
 
 /**
- * Servlet implementation class MybatisTest1Servlet
+ * Servlet implementation class MybatisTest3Servlet
  */
-@WebServlet(name = "MybatisTest1", urlPatterns = { "/mybatisTest1" })
-public class MybatisTest1Servlet extends HttpServlet {
+@WebServlet(name = "MybatisTest3", urlPatterns = { "/mybatisTest3" })
+public class MybatisTest3Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MybatisTest1Servlet() {
+    public MybatisTest3Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,17 +29,20 @@ public class MybatisTest1Servlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int result=new StudentServiceImpl().insertStudent();
+		request.setCharacterEncoding("utf-8");
 		
-		if(result>0)
-		{
-			response.setContentType("text/html; charset=utf-8");
-			response.getWriter().println("정상 처리 되었습니다.");
-		}
-		else
-		{
-			response.getWriter().println("실패되었습니다.");
-		}
+		String studentName=request.getParameter("studentName");
+		String studentTel=request.getParameter("studentTel");
+		String studentAddr=request.getParameter("studentAddr");
+		String studentEmail=request.getParameter("studentEmail");
+		
+		Student vo=new Student();
+		vo.setStudentName(studentName);
+		vo.setStudentTel(studentTel);
+		vo.setStudentEmail(studentEmail);
+		vo.setStudentAddr(studentAddr);
+		
+		int result=new StudentServiceImpl().insertStudent(vo);
 		
 		
 	}
