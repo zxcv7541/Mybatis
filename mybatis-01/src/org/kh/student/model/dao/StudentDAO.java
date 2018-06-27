@@ -7,4 +7,5 @@ public interface StudentDAO {
 	
 	public Student selectStudent();
 	public int insertStudent(SqlSession session);
+	
 }

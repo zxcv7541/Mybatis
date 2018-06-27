@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+1.회원 ID를 입력하여 해당 회원이 존재하는지 확인(ID검증 용도)<br>
+-있으면 사용불가 출력,없으면 사용 가능 출력 
+<form action="/idCheck">
+아이디 입력: <input type="text" name="userId">
+<input type="submit" value="전송">
+</form>
+<hr>
+2.회원 ID,PW를 이용하여 회원 정보 가져오기<br>
+-ID와 PW가 일치하는 회원에 대하여 정보 가져와서 VIEW Page를 이용하여 출력 하기
+
+<form action="/userChk">
+아이디 입력: <input type="text" name="userId">
+패스워드 입력: <input type="text" name="userPw">
+<input type="submit" value="전송">
+</form>
+<hr>
+3.회원 가입 만들어 보기
+-ID,PW,Nickname,전화번호 입력 받아 insert 처리
+
+<form action="/userJoin" method="post">
+Id:<input type="text" name="userId">
+pw:<input type="text" name="userPw">
+nick:<input type="text" name="userNick">
+tel:<input type="text" name="tel"> 
+<input type="submit" value="전송">
+</form>
+
+<hr>
+4.회원 정보 수정 하기
+-ID,PW를 넘겨받아 회원 정보를 가져온후 정보 수정후 변경하기 버튼을 클릭시 변경하기(단, PW,닉네임,전화번호만 바꿀수 있음)
+<hr>
+
+
+5.ID,PW를 입력받아 회원 탈퇴 처리하기
+<form action="deleteUser">
+아이디 입력:<input type="text" name="userId">
+비밀번호 입력:<input type="text" name="userPw">
+<input type="submit" value="전송">
+</form>
+<hr>
+
+
+6.전체 회원 정보 출력하기
+<hr>
+<a href="/userAll">출력</a>
+
+</body>
+</html>
