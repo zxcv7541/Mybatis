@@ -41,5 +41,9 @@
   delete from users where user_id=#{userId} and user_pw=#{userPw}
   
   </delete>
+  <update id="updateUser" parameterType="org.kh.student.model.vo.User">
+  update users set user_pw=#{userPw}, user_tel=#{userTel},user_nick=#{userNick} where user_id=#{userId}
+  
+  </update>
   
 </mapper>

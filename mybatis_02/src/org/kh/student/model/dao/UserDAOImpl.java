@@ -45,4 +45,9 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	public int updateUser(SqlSession session, User u) {
+		int result=session.insert("user.updateUser", u);
+		return result;
+	}
+
 }

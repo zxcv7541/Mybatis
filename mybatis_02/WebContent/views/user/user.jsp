@@ -8,10 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="/updateUser">
 아이디:${user.userId}
-비밀번호:${user.userPw}
-이름:${user.userNick}
-전화:${user.userTel}
+<input type="hidden" value="${user.userId}" name="userId">
+비밀번호:<input type="text" value="${user.userPw}" name="userPw">
+이름:<input type="text" value="${user.userNick}" name="userNick">
+전화:<input type="text" value="${user.userTel}" name="userTel">
 가입날짜:${user.regDate}
+<input type="submit" value="변경">
+</form>
 </body>
 </html>

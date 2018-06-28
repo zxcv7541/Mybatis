@@ -89,4 +89,21 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
+	
+	public int updateUser(User u) {
+		SqlSession session=getSqlSession();
+		int result=new UserDAOImpl().updateUser(session,u);
+		
+		if(result>0) 
+		{
+			session.commit();
+		}
+		else
+		{
+			session.rollback();
+		}
+		
+		return result;
+	}
+
 }
