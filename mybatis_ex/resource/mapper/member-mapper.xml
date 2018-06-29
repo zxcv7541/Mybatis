@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="members">
+  	<select id="selectOne" resultType="member" parameterType="member">
+  	select 
+  	member_no as memberNo,
+  	member_id as memberId,
+  	member_pw as memberPw,
+  	member_name as memberName,
+  	member_addr as memberAddr,
+  	gender as gender,
+  	hobby as hobby,
+  	reg_date as regDate
+  	from member
+  	where member_id=#{memberId} and member_pw=#{memberPw}
+  	</select>
+  	
+  	 <select id="selectInfo" resultType="member" parameterType="member">
+  	select 
+  	member_no as memberNo,
+  	member_id as memberId,
+  	member_pw as memberPw,
+  	member_name as memberName,
+  	member_addr as memberAddr,
+  	gender as gender,
+  	hobby as hobby,
+  	reg_date as regDate
+  	from member
+  	where member_id=#{memberId}
+  	
+  	</select>
+  	
+  	<update id="update">
+  		update member set member_pw=#{memberPw} where member_id=#{memberId}
+  	</update>
+  	
+  	<delete id="delete">
+  		delete from member where member_id=#{memberId}
+  	</delete>
+  	
+  	<insert id="insert">
+  	insert into member values(seq_member.nextval,#{memberId},#{memberPw},#{memberName},#{memberAddr},#{gender},#{hobby},default)
+  	</insert>
+  	
+  	<select id="selectAll" resultType="member">
+  	select 
+  	member_no as memberNo,
+  	member_id as memberId,
+  	member_pw as memberPw,
+  	member_name as memberName,
+  	member_addr as memberAddr,
+  	gender as gender,
+  	hobby as hobby,
+  	reg_date as regDate
+  	from member
+  	</select>
+  	
+  	<select id="searchAll" parameterType="search" resultType="member">
+  	select 
+  	member_no as memberNo,
+  	member_id as memberId,
+  	member_pw as memberPw,
+  	member_name as memberName,
+  	member_addr as memberAddr,
+  	gender as gender,
+  	hobby as hobby,
+  	reg_date as regDate
+  	from member
+  	<choose>
+  		<when test="searchRadio.equals('id')">
+  			where member_id like '%'||#{searchKeyword}||'%'
+  		</when>
+  		
+  		<when test="searchRadio.equals('name')">
+  			where member_name like '%'||#{searchKeyword}||'%'
+  		</when>
+  		
+  		<when test="searchRadio.equals('addr')">
+  			where member_addr like '%'||#{searchKeyword}||'%'
+  		</when>
+  		
+  	
+  	</choose>
+  	
+  	</select>
+  	
+  	<select id="check"  parameterType="check"  resultType="member">
+  	select 
+  
+  	member_no as memberNo,
+  	member_id as memberId,
+  	member_pw as memberPw,
+  		<if test="name!=null">
+  		member_name as memberName,
+  		</if>
+  	<if test="addr!=null">
+  	member_addr as memberAddr,
+  	</if>
+  	<if test="gender!=null">
+  	gender as gender,
+  	</if>
+  	<if test="hobby!=null">
+  	hobby as hobby,
+  	</if>
+  	reg_date as regDate
+  	from member
+  	</select>
+  	
+  	<select id="search3"    resultType="member">
+  	 	select 
+  	member_no as memberNo,
+  	member_id as memberId,
+  	member_pw as memberPw,
+  	member_name as memberName,
+  	member_addr as memberAddr,
+  	gender as gender,
+  	hobby as hobby,
+  	reg_date as regDate
+  	from member where member_addr IN
+		<foreach item="addr" collection="array" open="(" separator="," close=")">
+		#{addr}
+		
+		</foreach>
+  	
+  	</select>
+</mapper>
